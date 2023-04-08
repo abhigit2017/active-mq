@@ -1,0 +1,31 @@
+Size is the actual size of the file in bytes.
+
+Size on disk is the actual amount of space being taken up on the disk. They differ because the disk is divided into tracks and sectors, and can allocate blocks of discrete size.
+
+For a more detailed explanation, see this text which I copied from another site:
+
+We know that a disk is made up of Tracks and Sectors. In Windows that means the OS allocates space for files in "clusters" or "allocation units".
+
+The size of a cluster can vary, but typical ranges are from 512 bytes to 32K or more. For example, on my C:\ drive, the allocation unit is 4096 bytes. This means that Windows will allocate 4096 bytes for any file or portion of a file that is from 1 to 4096 bytes in length.
+
+If I have a file that is 17KB (kilo bytes), then the Size on disk would be 20.48 KB (or 20480 bytes). The calculation would be 4096 (1 allocation unit) x 5 = 20480 bytes. It takes 5 allocation units to hold a 17KB file.
+
+Another example would be if I have a file that is 2000 bytes in size. The file size on disk would be 4096 bytes. The reason is, because even though the entire file can fit inside one allocation unit, it still takes up 4096 of space (one allocation unit) on disk (only one file can use an allocation unit and cannot be shared with other files).
+
+So the size on disk is the space of all those sectors in which the file is saved. That means,usually, the size on disk is always greater than the actual size.
+
+So the actual size of a file(s) or folder(s) should always be taken from the Size value when viewing the properties window.
+
+=========
+Temp Percent Usage===>
+This is the % of assigned disk storage that has been used up to spool non-persistent messages
+Non persistent messages are those that don’t survive broker restart
+
+Store Percent Usage===>
+This is the % of assigned disk space that has been used up to store persistent messages.
+
+Memory Percent Usage===>
+This is the % of assigned memory of the broker that has been used up to keep track of destinations, cache messages etc. This value needs to be lesser than -Xmx  (Max JVM heap size)
+
+======>
+Specifying a prefetch limit of zero, however, will cause the consumer to poll for messages, one at a time, instead of the message being pushed to the consumer.
